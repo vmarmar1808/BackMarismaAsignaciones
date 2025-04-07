@@ -8,25 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class AlumnoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //Mostrar todos los alumnos
     public function index()
     {
         return Alumno::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Crear un nuevo alumno
     public function store(Request $request)
     {
 
@@ -42,25 +30,14 @@ class AlumnoController extends Controller
         return Alumno::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Mostrar un alumno específico por su ID
     public function show(string $id)
     {
         return Alumno::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar un alumno
     public function update(Request $request, string $id)
     {
         $alumno = Alumno::findOrFail($id);
@@ -68,9 +45,7 @@ class AlumnoController extends Controller
         return $alumno;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Eliminar un alumno
     public function destroy(string $id)
     {
         Alumno::destroy($id);

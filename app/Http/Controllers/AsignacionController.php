@@ -8,25 +8,15 @@ use Illuminate\Support\Facades\Validator;
 
 class AsignacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Mostrar todas las asignaciones
     public function index()
     {
         return Asignacion::with(['alumno', 'empresa'])->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Crear una nueva asignación
     public function store(Request $request)
     {
         $request->validate([
@@ -47,33 +37,21 @@ class AsignacionController extends Controller
         return Asignacion::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Mostrar una asignación específica por su ID
     public function show(string $id)
     {
         return Asignacion::with(['alumno', 'empresa'])->findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar una asignación
     public function update(Request $request, string $id)
     {
-        //
+        $asignacion = Asignacion::findOrFail($id);
+        $asignacion->update($request->all());
+        return $asignacion;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Eliminar una asignación
     public function destroy(string $id)
     {
         Asignacion::destroy($id);

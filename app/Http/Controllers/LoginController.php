@@ -48,6 +48,7 @@ class LoginController extends Controller
         ], 401);
     }
 
+    // Método para cerrar sesión
     public function logout(Request $request)
     {
         Auth::logout();

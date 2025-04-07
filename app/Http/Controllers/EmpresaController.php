@@ -8,25 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class EmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //Mostrar todas las empresas
     public function index()
     {
         return Empresa::all();   
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Crear una nueva empresa
     public function store(Request $request)
     {
         $request->validate([
@@ -46,26 +34,14 @@ class EmpresaController extends Controller
         return Empresa::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Mostrar una empresa específica por su ID
     public function show($id)
     {
         $empresa = Empresa::findOrFail($id);
         return response()->json($empresa);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    // Actualizar una empresa
     public function update(Request $request, string $id)
     {
         $empresa = Empresa::findOrFail($id);
@@ -73,9 +49,7 @@ class EmpresaController extends Controller
         return $empresa;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Eliminar una empresa
     public function destroy($id)
     {
         Empresa::destroy($id);
