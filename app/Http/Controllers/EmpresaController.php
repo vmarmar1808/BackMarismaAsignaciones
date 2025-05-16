@@ -29,6 +29,7 @@ class EmpresaController extends Controller
             'tutor_laboral' => 'required|string|max:100',
             'tutor_laboral_nif' => 'required|string|size:9',
             'plazas_disponibles' => 'required|integer|min:0',
+            'ubicacion' => 'required|string|max:255',
         ]);
 
         return Empresa::create($request->all());
