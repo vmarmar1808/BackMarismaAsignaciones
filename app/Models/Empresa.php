@@ -11,7 +11,7 @@ class Empresa extends Model
     protected $fillable = [
         'nombre', 'cif', 'sector', 'direccion', 'telefono', 
         'email', 'representante', 'representante_nif', 
-        'tutor_laboral', 'tutor_laboral_nif', 'plazas_disponibles'
+        'tutor_laboral', 'tutor_laboral_nif', 'plazas_disponibles', 'ubicacion'
     ];
 
     public function asignaciones()
