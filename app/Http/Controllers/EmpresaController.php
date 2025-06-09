@@ -31,6 +31,7 @@ class EmpresaController extends Controller
             'plazas_disponibles' => 'required|integer|min:0',
             'ubicacion' => 'required|string|max:255',
         ]);
+        
 
         return Empresa::create($request->all());
     }

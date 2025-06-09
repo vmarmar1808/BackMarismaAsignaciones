@@ -5,41 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
     public function login(Request $request)
-    {
-        // Validamos los datos del request
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        // Si la validación falla, devolvemos un error 422
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => 'Datos de entrada incorrectos',
-                'details' => $validator->errors()
-            ], 422);
-        }
-
-        // Intentamos autenticar al usuario con las credenciales
-        if (Auth::attempt($request->only('email', 'password'))) {
-            $user = Auth::user();
-
-            return response()->json([
-                'message' => 'Login exitoso',
-                'user' => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'role' => $user->role
-                ]
-            ], 200);
-        }
-
-        // Si las credenciales son incorrectas, devolvemos un error 401
+    if (!Auth::attempt($request->only('email', 'password'))) {
+        // Si la verificación falla, devolvemos JSON con código 401
         return response()->json([
             'error' => 'Credenciales incorrectas',
             'details' => [
@@ -48,11 +27,26 @@ class LoginController extends Controller
         ], 401);
     }
 
-    // Método para cerrar sesión
+    $user = Auth::user();
+
+    // Generar un nuevo token
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    // Devuelve una respuesta JSON con el token y los datos del usuario
+    return response()->json([
+        'message' => 'Login exitoso',
+        'user' => $user->only('id', 'name', 'email', 'role'), 
+        'access_token' => $token,
+        'token_type' => 'Bearer',
+    ]);
+}
+
     public function logout(Request $request)
     {
-        Auth::logout();
+        $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'Logout exitoso']);
+        return response()->json([
+            'message' => 'Cierre de sesión exitoso. Token invalidado.'
+        ]);
     }
 }

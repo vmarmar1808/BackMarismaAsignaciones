@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85c1d2065f70e38b0d6bf66559fb13c5",
+    "content-hash": "40aef10bac6c57ef884f14567c0be3f4",
     "packages": [
         {
             "name": "brick/math",
@@ -1330,16 +1330,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v4.0.8",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "ec1dd9ddb2ab370f79dfe724a101856e0963f43c"
+                "reference": "a360a6a1fd2400ead4eb9b6a9c1bb272939194f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/ec1dd9ddb2ab370f79dfe724a101856e0963f43c",
-                "reference": "ec1dd9ddb2ab370f79dfe724a101856e0963f43c",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/a360a6a1fd2400ead4eb9b6a9c1bb272939194f5",
+                "reference": "a360a6a1fd2400ead4eb9b6a9c1bb272939194f5",
                 "shasum": ""
             },
             "require": {
@@ -1390,7 +1390,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2025-01-26T19:34:36+00:00"
+            "time": "2025-04-23T13:03:38+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -6603,6 +6603,53 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
+            "name": "phpstan/phpdoc-parser",
+            "version": "1.33.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpdoc-parser.git",
+                "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/82a311fd3690fb2bf7b64d5c98f912b3dd746140",
+                "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^2.0",
+                "nikic/php-parser": "^4.15",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^1.5",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "symfony/process": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\PhpDocParser\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPDoc parser with support for nullable, intersection and generic types",
+            "support": {
+                "issues": "https://github.com/phpstan/phpdoc-parser/issues",
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.33.0"
+            },
+            "time": "2024-10-13T11:25:22+00:00"
+        },
+        {
             "name": "phpunit/php-code-coverage",
             "version": "11.0.9",
             "source": {
@@ -7951,6 +7998,62 @@
                 }
             ],
             "time": "2024-10-09T05:16:32+00:00"
+        },
+        {
+            "name": "smeghead/php-class-diagram",
+            "version": "v1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smeghead/php-class-diagram.git",
+                "reference": "a855fd5aec16a76508a3a3f288350ae12bb3b9b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smeghead/php-class-diagram/zipball/a855fd5aec16a76508a3a3f288350ae12bb3b9b7",
+                "reference": "a855fd5aec16a76508a3a3f288350ae12bb3b9b7",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^5.2",
+                "php": ">=8.0",
+                "phpstan/phpdoc-parser": "^1.30",
+                "symfony/finder": "^5.3|^6.0|^7.0"
+            },
+            "require-dev": {
+                "clue/phar-composer": "^1.2",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.6",
+                "smeghead/php-vendor-credits": "~0.0.4"
+            },
+            "bin": [
+                "bin/php-class-diagram"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Smeghead\\PhpClassDiagram\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "smeghead",
+                    "email": "smeghead7@gmail.com"
+                }
+            ],
+            "description": "A CLI tool that parses the PHP source directory and outputs PlantUML scripts.",
+            "keywords": [
+                "classdiagram",
+                "plantuml"
+            ],
+            "support": {
+                "issues": "https://github.com/smeghead/php-class-diagram/issues",
+                "source": "https://github.com/smeghead/php-class-diagram/tree/v1.5.3"
+            },
+            "time": "2024-12-26T13:20:40+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
