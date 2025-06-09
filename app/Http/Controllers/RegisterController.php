@@ -15,8 +15,8 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed', // La validación de confirmación
-            'role' => 'in:alumno,profesor'
+            'password' => 'required|string|min:6|confirmed', // La validación de confirmación de contraseña
+            'role' => 'in:alumno,profesor' // En la base de datos por defecto, el rol es alumno
         ]);
 
         // Si la validación falla, devuelve los errores y un código 422

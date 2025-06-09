@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckUserRole
 {
+    // Verifica si el usuario esta autenticado y tiene uno de los roles permitidos
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if (! $request->user()) {

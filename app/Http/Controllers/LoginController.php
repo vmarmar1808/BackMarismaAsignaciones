@@ -41,6 +41,7 @@ class LoginController extends Controller
     ]);
 }
 
+    // Metodo para cerrar sesión
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
