@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Asignacion;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Empresa;
+use App\Models\Alumno;
 
 class AsignacionController extends Controller
 {
@@ -14,8 +15,6 @@ class AsignacionController extends Controller
     {
         return Asignacion::with(['alumno', 'empresa'])->get();
     }
-
-   
 
     // Crear una nueva asignación
     public function store(Request $request)
@@ -82,5 +81,40 @@ class AsignacionController extends Controller
 
         return response()->json(['message' => 'Asignación eliminada correctamente']);
     }
+
+    public function byAlumnoEmail(string $email)
+{
+    // Validación y normalización del email
+    $email = strtolower(trim($email));
+    
+    if (empty($email)) {
+        return response()->json(['message' => 'El email no puede estar vacío'], 400);
+    }
+
+    // Depuración: Verificar si el alumno existe
+    $alumno = Alumno::where('email', $email)->first();
+    
+    if (!$alumno) {
+        return response()->json([
+            'message' => 'No se encontró ningún alumno con el email: '.$email,
+            'debug' => ['email_buscado' => $email]
+        ], 404);
+    }
+
+    // Consulta mejorada con eager loading y verificación
+    $asignaciones = Asignacion::with(['alumno', 'empresa'])
+        ->where('alumno_id', $alumno->id)
+        ->get();
+
+    if ($asignaciones->isEmpty()) {
+        return response()->json([
+            'message' => 'El alumno existe pero no tiene asignaciones',
+            'alumno_id' => $alumno->id,
+            'email' => $email
+        ], 404);
+    }
+
+    return $asignaciones;
+}
 
 }

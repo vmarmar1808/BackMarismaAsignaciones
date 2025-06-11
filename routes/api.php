@@ -19,7 +19,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::middleware('auth:sanctum')->group(function () {
 
     // Rutas para Alumnos (GET individual): Accesible por 'alumno' y 'profesor'
-    Route::get('/alumnos/{id}', [AlumnoController::class, 'show'])->middleware('role:alumno,profesor');
+    Route::get('/asignaciones/{email}', [AsignacionController::class, 'byAlumnoEmail'])->middleware('role:alumno,profesor');
 
     // Grupo de rutas para el rol 'profesor'
     // Todo lo demás dentro de este grupo solo será accesible si el usuario tiene el rol 'profesor'.
@@ -37,6 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/alumnos', [AlumnoController::class, 'store']);
         Route::put('/alumnos/{id}', [AlumnoController::class, 'update']);
         Route::delete('/alumnos/{id}', [AlumnoController::class, 'destroy']);
+        Route::get('/alumnos/{id}', [AlumnoController::class, 'show']);
 
         // Rutas para CRUD asignaciones
         Route::get('/asignaciones', [AsignacionController::class, 'index']);
